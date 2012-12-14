@@ -10,6 +10,15 @@ end
 
 ActiveAdmin::ResourceController # autoload
 class ActiveAdmin::ResourceController
+
+  #before_filter :skip_sidebar!
+  #
+  #protected
+  #
+  #def skip_sidebar!
+  #  @skip_sidebar = true
+  #end
+
   # Use #desc and #asc for sorting.
   def sort_order(chain)
     params[:order] ||= active_admin_config.sort_order
@@ -22,7 +31,8 @@ class ActiveAdmin::ResourceController
   end
 
   def search(chain)
-    @search = ActiveAdmin::Mongoid::Adaptor::Search.new(chain, clean_search_params(params[:q]))
+    chain
+    #@search ||= ActiveAdmin::Mongoid::Adaptor::Search.new(chain, clean_search_params(params[:q]))
   end
 
 end
